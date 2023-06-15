@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS movieUsers_db;
+CREATE DATABASE movieUsers_db;
