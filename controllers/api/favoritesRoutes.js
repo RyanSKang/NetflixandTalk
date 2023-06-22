@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const { Favorite, User } = require('../../models');
+const { Favorites } = require("../../models/Favorites");
+const { User } = require('../../models/User');
+
 
 // Add a favorite
 router.post('/favorites', async (req, res) => {
   try {
     const { userId, movieId } = req.body;
-    const favorite = await Favorite.create({ userId, movieId });
+    const favorite = await Favorites.create({ userId, movieId });
     res.json(favorite);
     res.render('favorites');
   } catch (error) {
@@ -19,7 +21,7 @@ router.post('/favorites', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    await Favorite.destroy({ where: { id } });
+    await Favorites.destroy({ where: { id } });
     res.json({ message: 'Favorite removed successfully' });
   } catch (error) {
     console.error(error);
@@ -31,7 +33,7 @@ router.delete('/:id', async (req, res) => {
 router.get('/:userId', async (req, res) => {
   try {
     const { userId } = req.params;
-    const favorites = await Favorite.findAll({
+    const favorites = await Favorites.findAll({
       where: { userId },
       include: [User, Movie], // Include associated User and Movie models
     });

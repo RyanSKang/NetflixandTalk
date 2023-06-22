@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
             console.log(data);
             res.render('homepage', {
                 data,
-                logged_in: req.session.logged_in
+                // logged_in: req.session.logged_in
             })
         })
     }
@@ -26,7 +26,7 @@ router.get('/movie/:keyword', (req, res) => {
             console.log(data);
             res.render('homepage', {
                 data
-                logged_in: req.session.logged_in
+                // logged_in: req.session.logged_in
             })    
         })
     }
@@ -52,7 +52,7 @@ router.get('/synapsis/:movie', async (req, res) => {
                 // the data will be sent into the synapsis.handlebars
                 ...data,
              
-                logged_in: req.session.logged_in
+                // logged_in: req.session.logged_in
             });
         };
         console.log(data)
